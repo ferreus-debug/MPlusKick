@@ -4,6 +4,8 @@
 
 Midnight blocks addons from choosing targets or reading enemy casts in dungeons. MPlusKick doesn't try to get around that. It shows you what's happening using the display methods Blizzard allows, and leaves the kick to you, on one key.
 
+![Casting panel with the interrupt tracker](branding/screenshot-casting-panel.png)
+
 ---
 
 ## Features
