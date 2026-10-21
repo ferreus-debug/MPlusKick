@@ -4,7 +4,8 @@ name: Auto release
 # publishes to CurseForge + GitHub Releases.
 #   - Default bump is patch (v0.6.0 -> v0.6.1).
 #   - Put "#minor" or "#major" in the commit message for a bigger bump.
-#   - Put "[skip release]" in the commit message to push without releasing.
+#   - Put "[skip release]" in the commit message to push without releasing
+#     (a manual run from the Actions tab releases anyway).
 # Can also be run by hand from the Actions tab with a chosen bump.
 on:
   push:
@@ -48,7 +49,8 @@ jobs:
           INPUT_BUMP: ${{ inputs.bump }}
         run: |
           msg=$(git log -1 --pretty=%B)
-          if [[ "$msg" == *"[skip release]"* ]]; then
+          # Only pushes honor [skip release]; a manual run always releases.
+          if [[ "$GITHUB_EVENT_NAME" == "push" && "$msg" == *"[skip release]"* ]]; then
             echo "Commit asks to skip release."; echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
           fi
           # A tag pushed together with this commit is released by release.yml.
