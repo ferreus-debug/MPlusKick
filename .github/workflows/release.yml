@@ -1,0 +1,37 @@
+name: Package and release
+
+# Runs when an annotated tag is pushed, e.g. `git tag -a v0.6.1 -m "v0.6.1" && git push --tags`
+# auto-release.yml starts it by hand on its new tag (`gh workflow run --ref <tag>`),
+# since a tag pushed with GITHUB_TOKEN doesn't trigger other workflows.
+on:
+  push:
+    tags:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    env:
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Clone project
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # Never publish a build that fails the offline test harness.
+      - name: Run tests
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq lua5.4
+          lua5.4 tests/run.lua
+
+      - name: Package and release
+        uses: BigWigsMods/packager@v2

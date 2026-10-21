@@ -1,0 +1,8 @@
+package-as: MPlusKick
+
+ignore:
+  - tests
+  - branding
+  - README.md
+  - CHANGELOG.md
+  - .github

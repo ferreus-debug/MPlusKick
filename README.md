@@ -64,6 +64,7 @@ Midnight blocks addons from choosing targets or reading enemy casts in dungeons.
 Found a bug? Type `/mk debug` and include its output in your report.
 
 ## Development
-- The addon lives in `MPlusKick/`. Link or copy that folder into `World of Warcraft\_retail_\Interface\AddOns`.
+- The repository root is the addon. Link or copy it into `World of Warcraft\_retail_\Interface\AddOns\MPlusKick`.
+- Releases are automatic: every push to `main` that touches the addon bumps the version, tags it, and publishes to CurseForge and GitHub Releases. The default bump is patch. Put `#minor` or `#major` in the commit message for a bigger bump, or `[skip release]` to push without releasing.
 - Tests run outside the game against a stubbed WoW API: `lua tests/run.lua` (Lua 5.1+). It prints `ALL OK` when everything passes.
 - License: MIT.

@@ -135,7 +135,7 @@ C_DamageMeter = {
 -- Load the addon in TOC order.
 local ns = {}
 for _, file in ipairs({ "Data.lua", "Core.lua", "UI.lua", "Panel.lua", "Kicks.lua", "PartyCD.lua", "Options.lua" }) do
-	assert(loadfile("MPlusKick/" .. file))("MPlusKick", ns)
+	assert(loadfile(file))("MPlusKick", ns)
 end
 local core = handlers[1]
 local function ev(e, ...) core._scripts.OnEvent(core, e, ...) end
