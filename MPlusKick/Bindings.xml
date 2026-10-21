@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="CLICK MPlusKickButton:LeftButton" header="MPLUSKICK" category="ADDONS">
+		-- Handled by the secure button
+	</Binding>
+	<Binding name="CLICK MPlusKickFocusButton:LeftButton" category="ADDONS">
+		-- Handled by the secure button
+	</Binding>
+</Bindings>
